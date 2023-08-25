@@ -2,7 +2,7 @@ import pendulum
 
 from airflow.decorators import dag
 
-from taskflow_utils import extract, transfrorm, load
+import taskflow_utils as tu
 
 
 @dag(
@@ -11,7 +11,7 @@ from taskflow_utils import extract, transfrorm, load
     catchup=False,
     tags=["example"],
 )
-def tutorial_taskflow_api():
+def tutorial_taskflow_api3():
     """
     ### TaskFlow API Tutorial Documentation
     This is a simple data pipeline example which demonstrates the use of
@@ -21,9 +21,9 @@ def tutorial_taskflow_api():
     [here](https://airflow.apache.org/docs/apache-airflow/stable/tutorial_taskflow_api.html)
     """
 
-    order_data = extract()
-    order_summary = transform(order_data)
-    load(order_summary["total_order_value"])
+    order_data = tu.extract()
+    order_summary = tu.transform(order_data)
+    tu.load(order_summary["total_order_value"])
 
 
 tutorial_taskflow_api3()
